@@ -4,8 +4,7 @@
 
 If you don't have linux, install docker (although, it should also compile on Mac).
 
-`
-git clone https://github.com/skiplang/skip.git
+```git clone https://github.com/skiplang/skip.git
 cd skip
 git checkout makefile
 git submodule update --init --recursive
@@ -13,4 +12,12 @@ git submodule update --init --recursive
 ./configure
 make -j 16
 sudo make install
-`
+```
+
+And then to run the tutorial, follow the comments in src/main.sk:
+
+```
+cd src
+sk start
+sk
+```
