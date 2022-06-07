@@ -1,22 +1,13 @@
 /* In this tutorial, we will explore some of the possibilities of the SKIP
  * type-system.
- *
- * In the file LList.sk you can find the definition of a new kind of linked
- * list, one that maintains an extra field called "info".
- *
- * The goal is to have a generic implementation of a linked list where
- * some information about the list is being maintained as the list grows.
- *
- * For example, you might want to know the length of a list without having
- * to walk it. Or you might want to know the minimum element etc ...
  */
 
 fun main(): void {
   // Let's take an example, a list that maintains its length
 
-  llist = LList::nil(LList.LengthInfo{});
-  !llist = LList::cons(1, llist);
-  print_string("The length is: " + llist.length());
-  !llist = LList::cons(1, llist);
-  print_string("The length is: " + llist.length());
+  llist = LList.LengthList[1, 2, 3];
+  debug(llist.length());
+
+  mlist = LList.MinList[3, 2, 1];
+  debug(mlist.min());
 }

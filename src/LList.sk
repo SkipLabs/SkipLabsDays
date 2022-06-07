@@ -2,6 +2,10 @@
 
 module LList;
 
+trait TInfo<T> {
+  fun add(head: T): inst;
+}
+
 base class .LList<T, Info: TInfo<T>> {
   children =
   | LNil(Info)

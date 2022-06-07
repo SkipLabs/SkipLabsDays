@@ -1,4 +1,17 @@
+/*****************************************************************************/
+/* The List builder is there to make sure that we don't reimplement the
+ * function createFromItems every single time.
+ * That method is important because it's the one that let's us use the syntax
+ * MyCollection[a, b, c].
+ */
+/*****************************************************************************/
+
 module LList;
+
+/*****************************************************************************/
+/* The generic builder, extend this class to create a new kind of collection.
+ */
+/*****************************************************************************/
 
 base class LListBuilder<T, Info: TInfo<T>> final (llist: LList<T, Info>) {
   static deferred fun create(): Info;
@@ -10,5 +23,51 @@ base class LListBuilder<T, Info: TInfo<T>> final (llist: LList<T, Info>) {
       !llist = LList::cons(elts[size - i - 1], llist);
     };
     static(llist)
+  }
+}
+
+/*****************************************************************************/
+/* A list that maintains its length. */
+/*****************************************************************************/
+
+value class LengthInfo<T>{length: Int = 0} uses TInfo<T> {
+  fun add(_head: T): LengthInfo<T> {
+    !this.length = this.length + 1;
+    this
+  }
+}
+
+class LengthList<T> extends LListBuilder<T, LengthInfo<T>> {
+  static fun create(): LengthInfo<T> {
+    LengthInfo{}
+  }
+
+  fun length(): Int {
+    this.llist.getInfo().length
+  }
+}
+
+/*****************************************************************************/
+/* A list that maintains its minimum element. */
+/*****************************************************************************/
+
+value class MinInfo<T: Orderable>{candidate: ?T = None()} uses TInfo<T> {
+  fun add(head: T): MinInfo<T> {
+    this.candidate match {
+    | None() -> !this.candidate = Some(head)
+    | Some(x) if (head < x) -> !this.candidate = Some(head)
+    | _ -> void
+    };
+    this
+  }
+}
+
+class MinList<T: Orderable> extends LListBuilder<T, MinInfo<T>> {
+  static fun create(): MinInfo<T> {
+    MinInfo{}
+  }
+
+  fun min(): ?T {
+    this.llist.getInfo().candidate
   }
 }
