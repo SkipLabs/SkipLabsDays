@@ -1,4 +1,4 @@
-# A simple SKIP tutorial
+# Let's have fun with the SKIP type-system!
 
 ## INSTALL
 
