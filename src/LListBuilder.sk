@@ -1,0 +1,14 @@
+module LList;
+
+base class LListBuilder<T, Info: TInfo<T>> final (llist: LList<T, Info>) {
+  static deferred fun create(): Info;
+
+  static deferred fun createFromItems(elts: Array<T>): this {
+    size = elts.size();
+    llist: LList<T, Info> = LNil(static::create());
+    for (i in Range(0, size)) {
+      !llist = LList::cons(elts[size - i - 1], llist);
+    };
+    static(llist)
+  }
+}

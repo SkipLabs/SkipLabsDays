@@ -1,0 +1,32 @@
+// An LList is a special kind of list that maintains the information about the list.
+
+module LList;
+
+base class .LList<T, Info: TInfo<T>> {
+  children =
+  | LNil(Info)
+  | LCons(Info, T, LList<T, Info>)
+
+  fun getInfo(): Info {
+    this match {
+    | LNil(info) -> info
+    | LCons(info, _, _) -> info
+    }
+  }
+
+  static fun nil(info: Info): LList<T, Info> {
+    LNil(info)
+  }
+
+  static fun cons(head: T, tail: LList<T, Info>): LList<T, Info> {
+    LCons(tail.getInfo().add(head), head, tail)
+  }
+
+  fun length[Info: LengthInfo<T>](): Int {
+    this.getInfo().length
+  }
+
+  fun min[T: Orderable, Info: MinInfo<T>](): ?T {
+    this.getInfo().candidate
+  }
+}
