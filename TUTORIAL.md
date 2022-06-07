@@ -14,7 +14,7 @@ make -j 16
 sudo make install
 ```
 
-And then to run the tutorial, follow the comments in src/main.sk:
+## Follow the instructions in src/main.sk
 
 ```
 cd src
