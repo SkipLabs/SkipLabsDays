@@ -1,10 +1,19 @@
-// An LList is a special kind of list that maintains the information about the list.
-
 module LList;
+
+/*****************************************************************************/
+/* The trait TInfo defines the set of operations that need to be implemented
+ * by a "information class".
+ * The function add corresponds at the function that will be called when an
+ * elemented is added to the list.*/
+/*****************************************************************************/
 
 trait TInfo<T> {
   fun add(head: T): inst;
 }
+
+/*****************************************************************************/
+/* The main type (defining LList). */
+/*****************************************************************************/
 
 base class .LList<T, Info: TInfo<T>> {
   children =
@@ -26,6 +35,8 @@ base class .LList<T, Info: TInfo<T>> {
     LCons(tail.getInfo().add(head), head, tail)
   }
 
+  // Note the constraints [Info: LengthInfo<T>] should be read:
+  // the function lenght is only present when Info extends LengthInfo
   fun length[Info: LengthInfo<T>](): Int {
     this.getInfo().length
   }

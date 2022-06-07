@@ -16,13 +16,13 @@ module LList;
 base class LListBuilder<T, Info: TInfo<T>> final (llist: LList<T, Info>) {
   static deferred fun create(): Info;
 
-  static deferred fun createFromItems(elts: Array<T>): this {
+  static deferred fun createFromItems(elts: Array<T>): LList<T, Info> {
     size = elts.size();
     llist: LList<T, Info> = LNil(static::create());
     for (i in Range(0, size)) {
       !llist = LList::cons(elts[size - i - 1], llist);
     };
-    static(llist)
+    llist
   }
 }
 
@@ -40,10 +40,6 @@ value class LengthInfo<T>{length: Int = 0} uses TInfo<T> {
 class LengthList<T> extends LListBuilder<T, LengthInfo<T>> {
   static fun create(): LengthInfo<T> {
     LengthInfo{}
-  }
-
-  fun length(): Int {
-    this.llist.getInfo().length
   }
 }
 
@@ -65,9 +61,5 @@ value class MinInfo<T: Orderable>{candidate: ?T = None()} uses TInfo<T> {
 class MinList<T: Orderable> extends LListBuilder<T, MinInfo<T>> {
   static fun create(): MinInfo<T> {
     MinInfo{}
-  }
-
-  fun min(): ?T {
-    this.llist.getInfo().candidate
   }
 }

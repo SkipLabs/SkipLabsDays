@@ -1,5 +1,15 @@
 /* In this tutorial, we will explore some of the possibilities of the SKIP
  * type-system.
+ *
+ * We define a new kind of linked lists (called LLists), that are capable
+ * of maintaining extra information about itself at insertion time.
+ *
+ * So for example we can define the list that maintains its length at all
+ * time (called LengthList). Or a list that maintains it's minimum element
+ * etc ...
+ *
+ * The goal is to be able to make the process generic of course, so we want
+ * to share all the logic for all kinds of lists.
  */
 
 fun main(): void {
@@ -10,4 +20,9 @@ fun main(): void {
 
   mlist = LList.MinList[3, 2, 1];
   debug(mlist.min());
+  // Ex1: try to implement MaxList (you can look into LListBuilder.sk)
+  // Ex2: try to implement MinLengthList (that maintains both minimum and length)
+  // Ex3: try to implement StrList (that maintains toString)
+  // Ex4: try to implement AvgList (that maintains the average)
+  // Ex5: try to implement something crazy, and let us know about it! :)
 }
