@@ -30,16 +30,18 @@ base class LListBuilder<T, Info: TInfo<T>> final (llist: LList<T, Info>) {
 /* A list that maintains its length. */
 /*****************************************************************************/
 
-value class LengthInfo<T>{length: Int = 0} uses TInfo<T> {
+base class LengthInfo<T>{length: Int = 0} uses TInfo<T> {
   fun add(_head: T): LengthInfo<T> {
     !this.length = this.length + 1;
     this
   }
 }
 
+class EmptyLengthInfo<T> extends LengthInfo<T>
+
 class LengthList<T> extends LListBuilder<T, LengthInfo<T>> {
   static fun create(): LengthInfo<T> {
-    LengthInfo{}
+    EmptyLengthInfo{}
   }
 }
 
@@ -47,7 +49,7 @@ class LengthList<T> extends LListBuilder<T, LengthInfo<T>> {
 /* A list that maintains its minimum element. */
 /*****************************************************************************/
 
-value class MinInfo<T: Orderable>{candidate: ?T = None()} uses TInfo<T> {
+base class MinInfo<T: Orderable>{candidate: ?T = None()} uses TInfo<T> {
   fun add(head: T): MinInfo<T> {
     this.candidate match {
     | None() -> !this.candidate = Some(head)
@@ -58,8 +60,10 @@ value class MinInfo<T: Orderable>{candidate: ?T = None()} uses TInfo<T> {
   }
 }
 
+class EmptyMinInfo<T: Orderable> extends MinInfo<T>
+
 class MinList<T: Orderable> extends LListBuilder<T, MinInfo<T>> {
   static fun create(): MinInfo<T> {
-    MinInfo{}
+    EmptyMinInfo{}
   }
 }
