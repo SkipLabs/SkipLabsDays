@@ -21,6 +21,10 @@ fun main(): void {
   mlist = LList.MinList[3, 2, 1];
   debug(mlist.min());
   // Ex1: try to implement MaxList (you can look into LListBuilder.sk)
+  // Ex2: try to implement LengthMinList (maintains both length and min)
+  // Make sure the following works
+  // lmList = LList.LengthMinList[3, 2, 1];
+  // debug((lmList.length(), lmList.min()));
   // Ex3: try to implement StrList (that maintains toString)
   // Ex4: try to implement AvgList (that maintains the average)
   // Ex5: try to implement something crazy, and let us know about it! :)

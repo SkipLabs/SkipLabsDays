@@ -31,9 +31,13 @@ base class LListBuilder<T, Info: TInfo<T>> final (llist: LList<T, Info>) {
 /*****************************************************************************/
 
 base class LengthInfo<T>{length: Int = 0} uses TInfo<T> {
-  fun add(_head: T): LengthInfo<T> {
-    !this.length = this.length + 1;
-    this
+  static deferred fun addLengthInfo(obj: this, _head: T): this {
+    !obj.length = obj.length + 1;
+    obj
+  }
+
+  overridable fun add(head: T): LengthInfo<T> {
+    static::addLengthInfo(this, head)
   }
 }
 
@@ -50,13 +54,17 @@ class LengthList<T> extends LListBuilder<T, LengthInfo<T>> {
 /*****************************************************************************/
 
 base class MinInfo<T: Orderable>{candidate: ?T = None()} uses TInfo<T> {
-  fun add(head: T): MinInfo<T> {
-    this.candidate match {
-    | None() -> !this.candidate = Some(head)
-    | Some(x) if (head < x) -> !this.candidate = Some(head)
+  static deferred fun addMinInfo(obj: this, head: T): this {
+    obj.candidate match {
+    | None() -> !obj.candidate = Some(head)
+    | Some(x) if (head < x) -> !obj.candidate = Some(head)
     | _ -> void
     };
-    this
+    obj
+  }
+
+  overridable fun add(head: T): MinInfo<T> {
+    static::addMinInfo(this, head);
   }
 }
 
