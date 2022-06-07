@@ -5,7 +5,7 @@ Material for SkipLabs days (8-9) June 2022 in Paris
 
 Where: room 3A, on the 3rd floor, 40 Rue du Colisée, 75008 Paris
 
-- 9:00-11:00  : Registration at the front desk. It's ok to be late! We will code in SKIP until 11:00. Try to show up for 11:00.
+- 9:00-11:00  : Registration at the front desk. It's ok to be late! We will code in SKIP until 11:00. Try to show up for 11:00. For the early birds, I have written a small SKIP tutorial to have fun with the type-system. Follow the instructions in TUTORIAL.md
 - 11:00-11:45 : Presentation by JV, SKFS, the SKIP filesystem.
 - 12:00-14:00 : Restaurant, JJ Paris 8ème, 34, rue de Penthièvre 75008 Paris
 - 14:00-14:30 : Presentation by Petr Maj, The Lacework pipeline
